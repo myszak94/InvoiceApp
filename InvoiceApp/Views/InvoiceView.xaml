@@ -5,8 +5,62 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:InvoiceApp.Views"
         mc:Ignorable="d"
-        Title="InvoiceView" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+        Title="InvoiceView" Height="600" Width="535.5">
+    <ScrollViewer>
+	    <Grid>
+			<Grid x:Name="Print">
+				<Grid.RowDefinitions>
+					<RowDefinition Height="120"/>
+					<RowDefinition Height="400"/>
+					<RowDefinition Height="200"/>
+				</Grid.RowDefinitions>
+				<StackPanel Grid.Row="0" Margin="30" VerticalAlignment="Center" HorizontalAlignment="Center">
+					<TextBlock Text="Faktura VAT" VerticalAlignment="Center" FontSize="40" FontWeight="Bold"/>
+				</StackPanel>
+				<StackPanel Grid.Row="1" HorizontalAlignment="Stretch" Margin="20">
+					<Grid HorizontalAlignment="Stretch">
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="*"/>
+							<ColumnDefinition Width="*"/>
+						</Grid.ColumnDefinitions>
+						<StackPanel Grid.Column="0" Margin="10">
+							<TextBlock Text="{Binding Invoice.Purchaser.Name}" FontSize="20" Margin="5"/>
+							<TextBlock Text="{Binding Invoice.Purchaser.Address}" FontSize="12" Margin="5"/>
+							<StackPanel Orientation="Horizontal">
+								<TextBlock Text="Data wystawienia:" FontSize="12" Margin="5"/>
+								<TextBlock Text="{Binding Invoice.IssueDate}"></TextBlock>
+							</StackPanel>
+						</StackPanel>
+						<StackPanel Grid.Column="1" Margin="10">
+							<TextBlock Text="{Binding Invoice.Supplier.Name}" FontSize="20" Margin="5"/>
+							<TextBlock Text="{Binding Invoice.Supplier.Address}" FontSize="12" Margin="5"/>
+						</StackPanel>
+					</Grid>
+					<Grid Margin="10 30 10 0">
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="*"/>
+							<ColumnDefinition Width="4*"/>
+							<ColumnDefinition Width="*"/>
+							<ColumnDefinition Width="2*"/>
+							<ColumnDefinition Width="*"/>
+							<ColumnDefinition Width="2*"/>
+							<ColumnDefinition Width="2*"/>
+						</Grid.ColumnDefinitions>
+						<TextBlock Grid.Column="0"  Text="Lp"  FontWeight="ExtraLight" FontSize="12"/>
+						<TextBlock Grid.Column="1"  Text="Opis"  FontWeight="ExtraLight" FontSize="12"/>
+						<TextBlock Grid.Column="2"  Text="Szt"  FontWeight="ExtraLight" FontSize="12"/>
+						<TextBlock Grid.Column="3"  Text="Cena netto"  FontWeight="ExtraLight" FontSize="12"/>
+						<TextBlock Grid.Column="4"  Text="VAT[%]"  FontWeight="ExtraLight" FontSize="12"/>
+						<TextBlock Grid.Column="5"  Text="Cena brutto"  FontWeight="ExtraLight" FontSize="12"/>
+						<TextBlock Grid.Column="6"  Text="Razem"  FontWeight="ExtraLight" FontSize="12"/>
+					</Grid>
+					<Rectangle Fill="Black" Height="1" Margin="5 2" Opacity="0.5"/>
+					<ListView ></ListView>
+
+				</StackPanel>
+			</Grid>
+
+	    </Grid>
+	</ScrollViewer>
+
 </Window>

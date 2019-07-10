@@ -27,10 +27,15 @@ namespace InvoiceApp.Services
 				Positions = purchase.Positions
 			};
 
-			foreach (var invoicePosition in invoice.Positions)
+			if(invoice.Positions != null)
 			{
-				invoicePosition.Product = priceList.Products.FirstOrDefault(x => x.Id == invoicePosition.ProductId);
+				foreach (var invoicePosition in invoice.Positions)
+				{
+					invoicePosition.Product = priceList.Products.FirstOrDefault(x => x.Id == invoicePosition.ProductId);
+				}
 			}
+
+			
 
 			return invoice;
 		}

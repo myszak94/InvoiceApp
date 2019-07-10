@@ -27,7 +27,7 @@
 		<Button Content="Wczytaj zamówienie" Grid.Column="1" Command="{Binding LoadPurchaseCommand}" Width="150" Margin="10"/>
 		<Button Content="Wczytaj cennik" Grid.Column="1"  Grid.Row="1"  Command="{Binding LoadPriceListCommand}" Width="150" Margin="10"/>
 		<StackPanel Grid.Row="2" Grid.ColumnSpan="2" Orientation="Horizontal">
-			<Button Content="Generuj fakturę" Width="150" Margin="15, 10, 10, 10" IsEnabled="{Binding AreFilesLoaded}"/>
+			<Button Content="Generuj fakturę" Command="{Binding GenerateInvoiceCommand}" Width="150" Margin="15, 10, 10, 10" IsEnabled="{Binding AreFilesLoaded}" />
 		</StackPanel>
 
 	</Grid>

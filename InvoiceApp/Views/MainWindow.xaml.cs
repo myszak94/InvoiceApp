@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using InvoiceApp.Services;
 using InvoiceApp.ViewModels;
 
 
@@ -13,7 +14,9 @@ namespace InvoiceApp
 		{
 			InitializeComponent();
 
-			DataContext = new MainViewModel();
+			var xmlService = new XmlService();
+
+			DataContext = new MainViewModel(new InvoiceService(xmlService), xmlService);
 		}
 	}
 }
