@@ -2,10 +2,9 @@
 
 namespace InvoiceApp.ViewModels
 {
-	public class InvoiceViewModel : BaseViewJModel
+	public class InvoiceViewModel : BaseViewModel
 	{
 		private Invoice invoice;
-
 
 		public InvoiceViewModel(Invoice invoice)
 		{

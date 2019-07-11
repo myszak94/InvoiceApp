@@ -4,6 +4,6 @@ namespace InvoiceApp.Models
 {
 	public class PriceList
 	{
-		public List<Product> Products { get; set; }	
+		public List<Product> Products { get; set; }
 	}
 }

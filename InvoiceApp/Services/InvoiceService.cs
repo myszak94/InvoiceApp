@@ -24,18 +24,16 @@ namespace InvoiceApp.Services
 				IssueDate = DateTime.Now,
 				Purchaser = purchase.Purchaser,
 				Supplier = purchase.Supplier,
-				Positions = purchase.Positions
+				Positions = purchase.Positions.OrderBy(x => x.OredrNumber).ToList()
 			};
 
-			if(invoice.Positions != null)
+			if (invoice.Positions != null)
 			{
 				foreach (var invoicePosition in invoice.Positions)
 				{
 					invoicePosition.Product = priceList.Products.FirstOrDefault(x => x.Id == invoicePosition.ProductId);
 				}
 			}
-
-			
 
 			return invoice;
 		}

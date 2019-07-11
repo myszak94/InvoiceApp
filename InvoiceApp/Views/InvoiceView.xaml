@@ -5,9 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:InvoiceApp.Views"
         mc:Ignorable="d"
-        Title="InvoiceView" Height="600" Width="535.5">
-    <ScrollViewer>
-	    <Grid>
+        Title="InvoiceView" Height="600" Width="560" ResizeMode="NoResize"  WindowStartupLocation="CenterScreen">
+	<ScrollViewer>
+		<Grid>
 			<Grid x:Name="Print">
 				<Grid.RowDefinitions>
 					<RowDefinition Height="120"/>
@@ -24,43 +24,55 @@
 							<ColumnDefinition Width="*"/>
 						</Grid.ColumnDefinitions>
 						<StackPanel Grid.Column="0" Margin="10">
-							<TextBlock Text="{Binding Invoice.Purchaser.Name}" FontSize="20" Margin="5"/>
+							<TextBlock Text="Kupujący" FontSize="18" Margin="5"/>
+							<TextBlock Text="{Binding Invoice.Purchaser.Name}" FontSize="12" Margin="5"/>
 							<TextBlock Text="{Binding Invoice.Purchaser.Address}" FontSize="12" Margin="5"/>
 							<StackPanel Orientation="Horizontal">
 								<TextBlock Text="Data wystawienia:" FontSize="12" Margin="5"/>
-								<TextBlock Text="{Binding Invoice.IssueDate}"></TextBlock>
+								<TextBlock Text="{Binding Invoice.IssueDate, StringFormat='{}{0:MM/dd/yyyy}'}" Margin="5"/>
 							</StackPanel>
 						</StackPanel>
 						<StackPanel Grid.Column="1" Margin="10">
-							<TextBlock Text="{Binding Invoice.Supplier.Name}" FontSize="20" Margin="5"/>
+							<TextBlock Text="Sprzedający" FontSize="18" Margin="5"/>
+							<TextBlock Text="{Binding Invoice.Supplier.Name}" FontSize="12" Margin="5"/>
 							<TextBlock Text="{Binding Invoice.Supplier.Address}" FontSize="12" Margin="5"/>
 						</StackPanel>
 					</Grid>
-					<Grid Margin="10 30 10 0">
+					<DataGrid HorizontalAlignment="Stretch" ItemsSource="{Binding Invoice.Positions}" AutoGenerateColumns="False" IsReadOnly="True">
+						<DataGrid.Columns>
+							<DataGridTextColumn Width="*" Header="Lp" Binding="{Binding OredrNumber}"/>
+							<DataGridTextColumn Width="8*" Header="Opis" Binding="{Binding Product.Name}" />
+							<DataGridTextColumn Width="1.5*" Header="Szt" Binding="{Binding Count}"/>
+							<DataGridTextColumn Width="2*" Header="Netto" Binding="{Binding Product.NettoPrice}"/>
+							<DataGridTextColumn Width="2*" Header="VAT[%]" Binding="{Binding Product.VatRate}"/>
+							<DataGridTextColumn Width="2*" Header="Brutto" Binding="{Binding Product.BruttoPrice}"/>
+							<DataGridTextColumn Width="2*" Header="Razem" Binding="{Binding Sum}"/>
+						</DataGrid.Columns>
+					</DataGrid>
+					<StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+						<TextBlock Text="SUMA" FontSize="18" Margin="5"/>
+						<TextBlock Text="{Binding Invoice.Summary, StringFormat='{}{0} PLN'}" FontSize="18" Margin="5" />
+					</StackPanel>
+				</StackPanel>
+				<StackPanel Grid.Row="2" Margin="20">
+					<Grid>
 						<Grid.ColumnDefinitions>
 							<ColumnDefinition Width="*"/>
-							<ColumnDefinition Width="4*"/>
 							<ColumnDefinition Width="*"/>
-							<ColumnDefinition Width="2*"/>
-							<ColumnDefinition Width="*"/>
-							<ColumnDefinition Width="2*"/>
-							<ColumnDefinition Width="2*"/>
 						</Grid.ColumnDefinitions>
-						<TextBlock Grid.Column="0"  Text="Lp"  FontWeight="ExtraLight" FontSize="12"/>
-						<TextBlock Grid.Column="1"  Text="Opis"  FontWeight="ExtraLight" FontSize="12"/>
-						<TextBlock Grid.Column="2"  Text="Szt"  FontWeight="ExtraLight" FontSize="12"/>
-						<TextBlock Grid.Column="3"  Text="Cena netto"  FontWeight="ExtraLight" FontSize="12"/>
-						<TextBlock Grid.Column="4"  Text="VAT[%]"  FontWeight="ExtraLight" FontSize="12"/>
-						<TextBlock Grid.Column="5"  Text="Cena brutto"  FontWeight="ExtraLight" FontSize="12"/>
-						<TextBlock Grid.Column="6"  Text="Razem"  FontWeight="ExtraLight" FontSize="12"/>
+						<TextBlock Grid.Column="0" FontSize="12" Margin="5">
+							<Run Text="Podpis osoby uprawnionej"/>
+							<LineBreak/>
+							<Run Text="do odebrania faktury"/>
+						</TextBlock>
+						<TextBlock Grid.Column="1" FontSize="12" Margin="5" TextAlignment="Right">
+							<Run Text="Podpis osoby uprawnionej"/>
+							<LineBreak/>
+							<Run Text="do wystawienia faktury"/>
+						</TextBlock>
 					</Grid>
-					<Rectangle Fill="Black" Height="1" Margin="5 2" Opacity="0.5"/>
-					<ListView ></ListView>
-
 				</StackPanel>
 			</Grid>
-
-	    </Grid>
+		</Grid>
 	</ScrollViewer>
-
 </Window>

@@ -1,9 +1,9 @@
 ﻿using InvoiceApp.Models;
 
-namespace InvoiceApp.Services
+namespace InvoiceApp.Interfaces
 {
 	public interface IInvoiceService
 	{
-		Invoice GenerateInvoice(string purchaseFilePath, string priceListFilePath );
+		Invoice GenerateInvoice(string purchaseFilePath, string priceListFilePath);
 	}
 }

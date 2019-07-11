@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Text;
 using System.Xml.Serialization;
 using InvoiceApp.Interfaces;
 
@@ -31,9 +32,9 @@ namespace InvoiceApp.Services
 				var writer = new XmlSerializer(typeof(T));
 
 				var path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + $"\\{fileName}.xml";
-				using (var file = File.Create(path))
+				using (var sw = new StreamWriter(path, false, Encoding.UTF8))
 				{
-					writer.Serialize(file, obj);
+					writer.Serialize(sw, obj);
 				}
 			}
 			catch (Exception e)

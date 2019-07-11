@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-
 namespace InvoiceApp.Models
 {
 	public class Invoice
@@ -12,17 +11,5 @@ namespace InvoiceApp.Models
 		public List<Position> Positions { get; set; }
 
 		public decimal Summary => Positions.Sum(x => x.Sum);
-		//{
-		//	get {
-		//		var sum = 0.0m;
-		//		foreach (var position in Positions)
-		//		{
-		//			sum += position.Sum;
-
-		//		}
-
-		//		return sum;
-		//	}
-		//}
 	}
 }
