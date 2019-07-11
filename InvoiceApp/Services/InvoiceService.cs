@@ -14,11 +14,8 @@ namespace InvoiceApp.Services
 			this.xmlService = xmlService;
 		}
 
-		public Invoice GenerateInvoice(string purchaseFilePath, string priceListFilePath)
+		public Invoice GenerateInvoice(Purchase purchase, PriceList priceList)
 		{
-			var purchase = xmlService.SerializeFile<Purchase>(purchaseFilePath);
-			var priceList = xmlService.SerializeFile<PriceList>(priceListFilePath);
-
 			var invoice = new Invoice
 			{
 				IssueDate = DateTime.Now,

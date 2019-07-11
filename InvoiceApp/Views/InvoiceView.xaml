@@ -3,11 +3,14 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:InvoiceApp.Views"
-        mc:Ignorable="d"
-        Title="InvoiceView" Height="600" Width="560" ResizeMode="NoResize"  WindowStartupLocation="CenterScreen">
+		xmlns:wpf="http://materialdesigninxaml.net/winfx/xaml/themes"
+		mc:Ignorable="d"
+        Title="Faktura" Height="600" Width="560" ResizeMode="NoResize"  WindowStartupLocation="CenterScreen">
 	<ScrollViewer>
 		<Grid>
+			<Button HorizontalAlignment="Right" Margin="10" VerticalAlignment="Top" Click="ButtonBase_OnClick">
+				<wpf:PackIcon Kind="Printer"/>
+			</Button>
 			<Grid x:Name="Print">
 				<Grid.RowDefinitions>
 					<RowDefinition Height="120"/>

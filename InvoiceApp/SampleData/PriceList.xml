@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<PriceList xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Products>
+    <Product>
+      <Id>1</Id>
+      <Name>Voltaren</Name>
+      <NettoPrice>10</NettoPrice>
+      <VatRate>23</VatRate>
+    </Product>
+    <Product>
+      <Id>17</Id>
+      <Name>Apap</Name>
+      <NettoPrice>20</NettoPrice>
+      <VatRate>23</VatRate>
+    </Product>
+    <Product>
+      <Id>21</Id>
+      <Name>Ibum</Name>
+      <NettoPrice>30</NettoPrice>
+      <VatRate>5</VatRate>
+    </Product>
+  </Products>
+</PriceList>

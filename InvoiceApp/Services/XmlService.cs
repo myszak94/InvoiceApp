@@ -8,20 +8,20 @@ namespace InvoiceApp.Services
 {
 	public class XmlService : IXmlService
 	{
-		public T SerializeFile<T>(string path) where T : new()
+		public (bool, T) SerializeFile<T>(string path) where T : new()
 		{
 			try
 			{
 				var reader = new XmlSerializer(typeof(T));
 				using (var file = new StreamReader(path))
 				{
-					return (T)reader.Deserialize(file);
+					return (true, (T)reader.Deserialize(file));
 				}
 			}
 			catch (Exception e)
 			{
 				Console.WriteLine(e);
-				return new T();
+				return (false, new T());
 			}
 		}
 

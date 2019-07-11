@@ -3,9 +3,8 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:InvoiceApp"
         mc:Ignorable="d"
-        Title="MainWindow" Height="200" Width="580" ResizeMode="NoResize"  WindowStartupLocation="CenterScreen">
+        Title="Załaduj pliki" Height="200" Width="580" ResizeMode="NoResize"  WindowStartupLocation="CenterScreen">
 	<Grid>
 		<Grid.RowDefinitions>
 			<RowDefinition Height="50"/>
@@ -24,9 +23,9 @@
 			<Label Content="Cennik:" Width="80"/>
 			<TextBox  Text="{Binding PriceListFilePath}" Width="250"/>
 		</StackPanel>
-		<Button Content="Wczytaj zamówienie" Grid.Column="1" Command="{Binding LoadPurchaseCommand}" Width="150" Margin="10"/>
+		<Button Content="Wczytaj zamówienie" Grid.Row="0" Grid.Column="1" Command="{Binding LoadPurchaseCommand}" Width="150" Margin="10"/>
 		<Button Content="Wczytaj cennik" Grid.Column="1"  Grid.Row="1"  Command="{Binding LoadPriceListCommand}" Width="150" Margin="10"/>
-		<StackPanel Grid.Row="2" Grid.ColumnSpan="2" Orientation="Horizontal">
+		<StackPanel Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal">
 			<Button Content="Generuj fakturę" Command="{Binding GenerateInvoiceCommand}" Width="150" Margin="15, 10, 10, 10" IsEnabled="{Binding AreFilesLoaded}" />
 		</StackPanel>
 

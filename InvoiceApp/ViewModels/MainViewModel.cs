@@ -1,6 +1,7 @@
-﻿using System.Windows.Input;
+﻿using System.Windows;
+using System.Windows.Input;
 using InvoiceApp.Interfaces;
-using InvoiceApp.Services;
+using InvoiceApp.Models;
 using InvoiceApp.Views;
 using Microsoft.Win32;
 
@@ -34,9 +35,20 @@ namespace InvoiceApp.ViewModels
 					var openFileDialog = new OpenFileDialog { Filter = XmlFilter };
 					if (openFileDialog.ShowDialog() == true)
 					{
-						PurchaseFilePath = openFileDialog.FileName;
-						IsPurchaseFileLoaded = true;
-						OnPropertyChanged("AreFilesLoaded");
+
+						var (result, purchase) = xmlService.SerializeFile<Purchase>(openFileDialog.FileName);
+						if (result)
+						{
+							PurchaseFilePath = openFileDialog.FileName;
+							Purchase = purchase;
+							IsPurchaseFileLoaded = true;
+							OnPropertyChanged("AreFilesLoaded");
+						}
+						else
+						{
+							MessageBox.Show("Podany plik z zamówieniem jest nieprawiłowy", "Błąd odczytu pliku", MessageBoxButton.OK,
+								MessageBoxImage.Error);
+						}
 					}
 				});
 
@@ -57,9 +69,19 @@ namespace InvoiceApp.ViewModels
 
 					if (openFileDialog.ShowDialog() == true)
 					{
-						PriceListFilePath = openFileDialog.FileName;
-						IsPriceListFileLoaded = true;
-						OnPropertyChanged("AreFilesLoaded");
+						var (result, priceList) = xmlService.SerializeFile<PriceList>(openFileDialog.FileName);
+						if (result)
+						{
+							PriceListFilePath = openFileDialog.FileName;
+							PriceList = priceList;
+							IsPriceListFileLoaded = true;
+							OnPropertyChanged("AreFilesLoaded");
+						}
+						else
+						{
+							MessageBox.Show("Podany plik z cennikiem jest nieprawiłowy", "Błąd odczytu pliku", MessageBoxButton.OK,
+								MessageBoxImage.Error);
+						}
 					}
 				});
 
@@ -76,7 +98,7 @@ namespace InvoiceApp.ViewModels
 
 				generateInvoiceCommand = new DelegateCommand(o =>
 				{
-					var invoice = invoiceService.GenerateInvoice(PurchaseFilePath, PriceListFilePath);
+					var invoice = invoiceService.GenerateInvoice(Purchase, PriceList);
 					var invoiceView = new InvoiceView(new InvoiceViewModel(invoice));
 
 					var invoiceName = $"{invoice.IssueDate:yy-MM-dd}_{invoice.Purchaser.Name}";
@@ -112,6 +134,8 @@ namespace InvoiceApp.ViewModels
 		}
 
 		public bool AreFilesLoaded => IsPurchaseFileLoaded && IsPriceListFileLoaded;
+		private Purchase Purchase { get; set; }
+		private PriceList PriceList { get; set; }
 
 		private const string XmlFilter = "eXtensible Markup Language file|*.xml;";
 		private bool IsPurchaseFileLoaded { get; set; }

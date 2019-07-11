@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Purchase xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Purchaser>
+    <Name>Apteka Zdrowie</Name>
+    <Address>Piotrowo 88, 61-138 Poznań</Address>
+  </Purchaser>
+  <Supplier>
+    <Name>Magazyn centralny</Name>
+    <Address>ul. Słoneczna 50, 00-000 Warszawa</Address>
+  </Supplier>
+  <Positions>
+    <Position>
+      <ProductId>17</ProductId>
+      <OredrNumber>1</OredrNumber>
+      <Count>1</Count>
+    </Position>
+    <Position>
+      <ProductId>21</ProductId>
+      <OredrNumber>2</OredrNumber>
+      <Count>2</Count>
+    </Position>
+    <Position>
+      <ProductId>1</ProductId>
+      <OredrNumber>3</OredrNumber>
+      <Count>15</Count>
+    </Position>
+  </Positions>
+</Purchase>
